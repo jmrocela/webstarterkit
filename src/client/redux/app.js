@@ -21,5 +21,5 @@ export const getFingerprint = () => {
     if (!savedFingerprint) {
       // save fingerprint to cookie
     }
-  }
+  };
 };

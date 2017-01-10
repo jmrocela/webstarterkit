@@ -1,0 +1,12 @@
+exports[`HomeContainer should render a label 1`] = `
+<HomeContainer
+  dispatch={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  } />
+`;

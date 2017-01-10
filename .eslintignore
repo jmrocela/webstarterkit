@@ -1,4 +1,7 @@
 bin/*
-storage/*
 resources/*
 webpack/*
+gulpfile.js
+newrelic.js
+jestsetup.js
+__tests__/*

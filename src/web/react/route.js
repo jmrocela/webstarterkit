@@ -32,10 +32,10 @@ export default (asset, routes, configureStore) => {
         if (error) {
           ctx.status = 500;
           ctx.body = error.message;
-          resolve(next);
+          resolve();
         } else if (redirectLocation) {
           ctx.redirect(302, redirectLocation.pathname + redirectLocation.search);
-          resolve(next);
+          resolve();
         } else if (renderProps) {
           renderProps.components.shift(); // remove the root route. see /client/Routes.js
           if (ctx.session.authenticated === true) {
@@ -59,7 +59,7 @@ export default (asset, routes, configureStore) => {
             ctx.status = 200;
             ctx.type = 'text/html';
             ctx.body = '<!doctype html>\n' + ReactDOM.renderToString(<Html component={component} locale={locale} store={store} asset={asset} csrf={ctx.state.csrf} />);
-            resolve(next);
+            resolve();
           })
           .catch(e => {
             ctx.status = 404;
@@ -67,9 +67,11 @@ export default (asset, routes, configureStore) => {
           });
         } else {
           ctx.status = 404;
-          resolve(next);
+          resolve();
         }
       });
     });
+
+    return next();
   };
-}
+};

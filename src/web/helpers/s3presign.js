@@ -17,7 +17,7 @@ export default async ({ filename = '', length = null }) => {
     throw new ApiError('file is too big', 400, '11400');
   }
 
-  filename = crypto.createHmac('sha1', process.env.NODE_SECRET).update(new Date().getTime()+'').digest('hex').substr(0, 12) + ext;
+  filename = crypto.createHmac('sha1', process.env.NODE_SECRET).update(new Date().getTime() + '').digest('hex').substr(0, 12) + ext;
 
   const S3 = new AWS.S3();
   const params = {
@@ -33,7 +33,7 @@ export default async ({ filename = '', length = null }) => {
         return reject(err);
       }
 
-      resolve({
+      return resolve({
         type: `image/${path.extname(filename).substr(1)}`,
         signedUrl: data,
         publicUrl: `https://${process.env.AWS_S3_BUCKET}.s3.amazonaws.com/${filename}`,
@@ -41,5 +41,4 @@ export default async ({ filename = '', length = null }) => {
       });
     });
   });
-
-}
+};

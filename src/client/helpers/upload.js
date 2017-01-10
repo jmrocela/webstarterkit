@@ -8,23 +8,21 @@ export default (file) => {
       data.append('file', file);
       return new Promise(function(resolve) {
         let xhr = new XMLHttpRequest();
-        if (xhr.withCredentials != null) {
+        if (xhr.withCredentials !== null) {
           xhr.open('PUT', signed, true);
-        }
-        else if (typeof XDomainRequest !== "undefined") {
+        } else if (typeof XDomainRequest !== 'undefined') {
           xhr = new XDomainRequest();
           xhr.open('PUT', signed);
-        }
-        else {
+        } else {
           xhr = null;
         }
         xhr.setRequestHeader('Content-Type', response.data.type);
-        xhr.setRequestHeader('Content-Disposition','inline; filename=' + response.data.filename);
+        xhr.setRequestHeader('Content-Disposition', 'inline; filename=' + response.data.filename);
         xhr.setRequestHeader('x-amz-acl', 'public-read');
-        xhr.onload = function() {
+        xhr.onload = () => {
           resolve({ url: response.data.publicUrl });
         };
         xhr.send(file);
       });
     });
-}
+};

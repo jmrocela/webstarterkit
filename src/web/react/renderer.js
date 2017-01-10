@@ -41,4 +41,4 @@ export default async (component, ctx) => {
   ).then(() => {
     return ReactDOM.renderToStaticMarkup(<IntlProvider locale={locale} messages={messages}><Provider store={store}>{component}</Provider></IntlProvider>);
   });
-}
+};

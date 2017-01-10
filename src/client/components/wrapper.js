@@ -9,17 +9,18 @@ class Wrapper extends Component {
     this.props.actions.getFingerprint();
 
     if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+      /*eslint no-console: ["error", { allow: ["info", "error"] }] */
       navigator.serviceWorker.register('/sw.js').then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        console.info('ServiceWorker registration successful with scope: ', registration.scope);
       }).catch(function(err) {
-        console.log('ServiceWorker registration failed: ', err);
+        console.error('ServiceWorker registration failed: ', err);
       });
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.key !== this.props.location.key && nextProps.location.state && nextProps.location.state.modal) {
-      this.previousChildren = this.props.children
+      this.previousChildren = this.props.children;
     }
   }
 

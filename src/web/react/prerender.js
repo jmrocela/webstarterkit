@@ -1,20 +1,21 @@
 export default function preRenderMiddleware(dispatch, components, params, extra = {}) {
   let needs = [];
-  function checkObject(components, depth = 0) {
-    let keys = Object.keys(components);
+  const checkObject = (objects, depth = 0) => {
+    let keys = Object.keys(objects);
 
     if (depth < 3) {
       for (let key of keys) {
-        if (typeof components[key] === 'object') {
-          checkObject(components[key], depth + 1);
-        } else if (typeof components[key] === 'function') {
-          if (components[key].need) {
-            needs = needs.concat(components[key].need);
+        if (typeof objects[key] === 'object') {
+          checkObject(objects[key], depth + 1);
+        } else if (typeof objects[key] === 'function') {
+          if (objects[key].need) {
+            needs = needs.concat(objects[key].need);
           }
         }
       }
     }
-  }
+  };
+
   // this enables react-router to support ssr with the components prop in the route
   checkObject(components);
   return Promise.all(

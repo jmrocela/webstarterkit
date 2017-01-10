@@ -27,8 +27,7 @@ class Html extends Component {
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
         {process.env.NODE_ENV === 'production' && <script src="https://unpkg.com/react@15.4.2/dist/react.min.js"></script>}
         {process.env.NODE_ENV === 'production' && <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.min.js"></script>}
-        <link href={`//${process.env.ASSET_HOST}/fonts.${min}css`} rel="stylesheet"/>
-        <link href={`//${process.env.ASSET_HOST}/hooq.${min}css`} rel="stylesheet"/>
+        <link href={`//${process.env.ASSET_HOST}/base.${min}css`} rel="stylesheet"/>
         <script dangerouslySetInnerHTML={{__html: `window.__locale=${serialize(locale)};window.__csrf=${serialize(csrf)}`}} charSet="UTF-8"/>
         <script src={`//${process.env.ASSET_HOST}/locales/${locale}.js`} />
         <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(initState)};`}} charSet="UTF-8"/>
