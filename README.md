@@ -1,3 +1,3 @@
-# CABOOSE
+# ISOMORPHIC STARTER KIT
 
-Isomorphic Start Kit
+Isomorphic Starter Kit
